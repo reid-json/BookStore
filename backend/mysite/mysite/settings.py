@@ -74,8 +74,12 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': "BookStoreDB",
+        'USER': "root",
+        'PASSWORD': "root",
+        'HOST': "localhost",
+        'PORT': "3306",
     }
 }
 
@@ -120,3 +124,20 @@ STATIC_URL = 'static/'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+import sys
+
+if 'runserver' in sys.argv:
+    from django.db import connection
+    try:
+        connection.ensure_connection()
+        print("\n" + "="*50)
+        print("✓ MySQL Database Connected Successfully!")
+        print(f"  Database: {connection.settings_dict['NAME']}")
+        print(f"  Host: {connection.settings_dict['HOST']}")
+        print("="*50 + "\n")
+    except Exception as e:
+        print("\n" + "="*50)
+        print("✗ Database Connection Failed!")
+        print(f"  Error: {e}")
+        print("="*50 + "\n")
