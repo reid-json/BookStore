@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,11 +38,11 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'books',
-    'cart',
-    'orders',
-    'pages',
-    'search',
+    'mysite.Books',
+    'mysite.Cart',
+    'mysite.Orders',
+    'mysite.Pages',
+    'mysite.Search',
 ]
 
 MIDDLEWARE = [
@@ -85,6 +86,9 @@ DATABASES = {
         'PASSWORD': "rootmaster",
         'HOST': "bookstoredb.c5qaa0406cvn.us-east-2.rds.amazonaws.com",
         'PORT': "3306",
+        'OPTIONS':{
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
