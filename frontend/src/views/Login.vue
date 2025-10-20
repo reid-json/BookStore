@@ -3,10 +3,7 @@
 </script>
 
 <template>
-  <div id="app">
-    <router-view />
-  </div>
-
+  <div><h1>Welcome to the Login Page</h1></div>
 </template>
 
 <style scoped>
