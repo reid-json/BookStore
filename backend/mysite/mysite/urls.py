@@ -21,5 +21,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('appPages.urls')),
     path('api/', include('appBooks.urls')),  #you should have a url inside the package for each app and a url for each package here
+    path("api/", include("appAccounts.urls")),
 ]
 

@@ -11,12 +11,22 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 from pathlib import Path
+import os
+from datetime import timedelta
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+def env_bool(key: str, default: bool = False) -> bool:
+    v = os.getenv(key, "1" if default else "0")
+    return v.lower() in ("1", "true", "yes")
 
+DEBUG = env_bool("DJANGO_DEBUG", True)
+
+def get_env_list(key: str) -> list[str]:
+    raw = os.getenv(key, "")
+    return [x.strip() for x in raw.split(",") if x.strip()]
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/5.2/howto/deployment/checklist/
 
@@ -24,7 +34,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-o8!t8edb)c0lal49qkzwe*xy()twwmkda^$1=5(&-0*((gp60e'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+##DEBUG = True
 
 ALLOWED_HOSTS = []
 
@@ -40,6 +50,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     'corsheaders',
+    'rest_framework_simplejwt',
     'appAccounts',
     'appBooks',
     'appCart',
@@ -47,9 +58,9 @@ INSTALLED_APPS = [
     'appPages',
     'appSearch',
 
-
-
 ]
+
+AUTH_USER_MODEL = "appAccounts.User"
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
@@ -62,7 +73,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CORS_ALLOW_ALL_ORIGINS = True
+##CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOWED_ORIGINS = get_env_list("CORS_ALLOWED_ORIGINS")
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -119,6 +132,23 @@ AUTH_PASSWORD_VALIDATORS = [
         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
     },
 ]
+
+REST_FRAMEWORK = {
+    "DEFAULT_AUTHENTICATION_CLASSES": (
+        "rest_framework_simplejwt.authentication.JWTAuthentication",
+    ),
+    "DEFAULT_PERMISSION_CLASSES": (
+        "rest_framework.permissions.AllowAny",
+    ),
+}
+
+ACCESS_MIN = int(os.getenv("JWT_ACCESS_MIN", "60"))
+REFRESH_MIN = int(os.getenv("JWT_REFRESH_MIN", "10080"))
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(minutes=ACCESS_MIN),
+    "REFRESH_TOKEN_LIFETIME": timedelta(minutes=REFRESH_MIN),
+    "AUTH_HEADER_TYPES": ("Bearer",),
+}
 
 
 # Internationalization
