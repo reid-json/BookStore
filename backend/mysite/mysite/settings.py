@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 
 from pathlib import Path
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -37,15 +38,21 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'Books',
-    'Cart',
-    'mysite.Orders',
-    'mysite.Pages',
-    'mysite.Search',
-    'Accounts'
+    'rest_framework',
+    'corsheaders',
+    'appAccounts',
+    'appBooks',
+    'appCart',
+    'appOrders',
+    'appPages',
+    'appSearch',
+
+
+
 ]
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -54,6 +61,8 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
+
+CORS_ALLOW_ALL_ORIGINS = True
 
 ROOT_URLCONF = 'mysite.urls'
 
@@ -86,6 +95,9 @@ DATABASES = {
         'PASSWORD': "rootmaster",
         'HOST': "bookstoredb.c5qaa0406cvn.us-east-2.rds.amazonaws.com",
         'PORT': "3306",
+        'OPTIONS':{
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
