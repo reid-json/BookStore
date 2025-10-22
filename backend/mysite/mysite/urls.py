@@ -16,10 +16,12 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-
+from django.conf.urls.static import static
+from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('appPages.urls')),
     path('api/', include('appBooks.urls')),  #you should have a url inside the package for each app and a url for each package here
-]
+
+] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 

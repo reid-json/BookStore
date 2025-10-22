@@ -26,6 +26,7 @@ export default{
       <!-- This basically loops the table of books and lists them in this format -->
       <li style = "list-style: none;" v-for = "books in books" :key="books.id">
         <!-- This is the format section -->
+        <img :src="`http://127.0.0.1:8000/media/${books.cover_image}`" alt="Book cover" />
         <p>{{ books.title}}</p>
         <p>{{ books.author}}</p>
         <p>{{ books.price}}</p>
