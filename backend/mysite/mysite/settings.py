@@ -13,6 +13,7 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from pathlib import Path
 #from django.conf.global_settings import MEDIA_URL
 
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 MEDIA_URL = '/media/'
@@ -96,6 +97,9 @@ DATABASES = {
         'PASSWORD': "rootmaster",
         'HOST': "bookstoredb.c5qaa0406cvn.us-east-2.rds.amazonaws.com",
         'PORT': "3306",
+        'OPTIONS':{
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
+        }
     }
 }
 
