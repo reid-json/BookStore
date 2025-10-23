@@ -37,7 +37,8 @@ export function logout() {
 }
 
 export async function registerUser({ username, email, password }) {
-  return apiFetch('/api/auth/register/', { method: 'POST', auth: false, body: { username, email, password } });
+  return apiFetch('/api/auth/register/', {
+      method: 'POST', auth: false, body: { username, email, password } });
 }
 
 export async function me() {

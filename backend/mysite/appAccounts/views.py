@@ -15,3 +15,8 @@ class MeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request):
         return Response(UserSerializer(request.user).data)
+
+class postView(APIView):
+    permission_classes = [permissions.IsAuthenticated]
+    def get(self, request):
+        return Response(UserSerializer(request.user).data)
