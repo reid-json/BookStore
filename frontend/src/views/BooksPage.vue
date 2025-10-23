@@ -1,12 +1,12 @@
 <script>
-export default{
+export default {
   name: "BookPage",
-  data(){
-    return{
+  data() {
+    return {
       books: []
     };
   },
-  mounted(){
+  mounted() {
     fetch('http://127.0.0.1:8000/api/books/')
         .then(res => res.json())
         .then(data => {
@@ -14,10 +14,11 @@ export default{
           this.books = data;
         })
         .catch(err => console.error('API error: ', err));
-
-}
+  }
 };
 </script>
+
+
 
 <template>
   <div>
@@ -26,7 +27,7 @@ export default{
       <!-- This basically loops the table of books and lists them in this format -->
       <li style = "list-style: none;" v-for = "books in books" :key="books.id">
         <!-- This is the format section -->
-        <img :src="`http://127.0.0.1:8000/media/${books.cover_image}`" alt="Book cover" />
+        <img :src="books.cover_image" alt="Book Cover" />
         <p>{{ books.title}}</p>
         <p>{{ books.author}}</p>
         <p>{{ books.price}}</p>
@@ -40,5 +41,9 @@ export default{
 </template>
 
 <style scoped>
+img {
+  max-width: 200px;
+  height: auto;
+}
 
 </style>
