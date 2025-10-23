@@ -9,3 +9,4 @@ class BooksModel(models.Model):
     author = models.CharField(max_length=100)
     stock = models.IntegerField()
     published_date = models.DateField()
+    cover_image = models.ImageField(upload_to='covers/', null=True, blank=True)
