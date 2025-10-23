@@ -1,12 +1,8 @@
-#imports the models function from django
 from django.db import models
+from django.contrib.auth.models import AbstractUser
 
-from mysite import Cart
-
-
-#creates a table named Accounts_Model with certain attributes (username, password, cart).
-#python version of sql kinda.
-class AccountsModel(models.Model):
-    username = models.CharField(max_length=100)
+# Create your models here.
+class UserModel(models.Model):
+    username = models.CharField(max_length=100), models.UUIDField(max_length=100)
+    email = models.EmailField(max_length=100)
     password = models.CharField(max_length=100)
-    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
