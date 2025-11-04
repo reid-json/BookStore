@@ -21,7 +21,8 @@ from django.conf import settings
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('appPages.urls')),
-    path('api/', include('appBooks.urls')),  #you should have a url inside the package for each app and a url for each package here
+    path('api/', include('appBooks.urls')),
+    path("api/", include("appAccounts.urls")),#you should have a url inside the package for each app and a url for each package here
 
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
