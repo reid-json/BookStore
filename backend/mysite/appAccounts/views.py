@@ -1,11 +1,10 @@
-from django.shortcuts import render
-
-# Create your views here.
+# ================================
+# File: BookStore/backend/mysite/appAccounts/views.py
+# ================================
 from rest_framework import generics, permissions
 from rest_framework.response import Response
 from rest_framework.views import APIView
-from django.contrib.auth.models import User
-from .serializers import RegisterSerializer, UserSerializer
+from .serializers import RegisterSerializer, UserMeSerializer
 
 class RegisterView(generics.CreateAPIView):
     serializer_class = RegisterSerializer
@@ -14,9 +13,4 @@ class RegisterView(generics.CreateAPIView):
 class MeView(APIView):
     permission_classes = [permissions.IsAuthenticated]
     def get(self, request):
-        return Response(UserSerializer(request.user).data)
-
-class postView(APIView):
-    permission_classes = [permissions.IsAuthenticated]
-    def get(self, request):
-        return Response(UserSerializer(request.user).data)
+        return Response(UserMeSerializer(request.user).data)
