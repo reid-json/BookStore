@@ -11,7 +11,7 @@
     <inspection_tool class="PyUnresolvedReferencesInspection" enabled="true" level="WARNING" enabled_by_default="true">
       <option name="ignoredIdentifiers">
         <list>
-          <option value="mysite.appCart.models.*" />
+          <option value="mysite.mysite.settings.AA_SingletonPattern_DatabaseConfig" />
         </list>
       </option>
     </inspection_tool>
