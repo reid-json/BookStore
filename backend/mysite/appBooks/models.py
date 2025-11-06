@@ -1,15 +1,14 @@
-#imports the models function from django
-import uuid
-
 from django.db import models
 
-#creates a table named Books_Model with certain attributes (title, price, author, stock, published_date).
-#python version of sql kinda.
 class BooksModel(models.Model):
-    isbn = models.UUIDField(max_length= 13, primary_key=True, default=uuid.uuid4, editable=False, unique=True)
-    title = models.CharField(max_length=100)
-    price = models.DecimalField(max_digits=6, decimal_places=2)
-    author = models.CharField(max_length=100)
+    isbn = models.CharField(max_length=13, primary_key=True)
+    title = models.CharField(max_length=255)
+    genre = models.CharField(max_length=255)
     stock = models.IntegerField()
+    author = models.CharField(max_length=255, blank=True)
+    price = models.DecimalField(max_digits=10, decimal_places=2)
+    coverImage = models.ImageField(upload_to='media/covers/')
     published_date = models.DateField()
-    cover_image = models.ImageField(upload_to='covers/', null=True, blank=True)
+
+    def __str__(self):
+        return self.title

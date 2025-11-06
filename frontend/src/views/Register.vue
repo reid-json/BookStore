@@ -2,12 +2,11 @@
   <div class="container">
     <h2>Register</h2>
     <form @submit.prevent="onSubmit">
-      <label>Username </label>
+      <label>Username</label>
       <input v-model="username" required />
-      <label>Email </label>
+      <label>Email</label>
       <input v-model="email" type="email" />
-      <br>
-      <label>Password </label>
+      <label>Password</label>
       <input type="password" v-model="password" required minlength="8" />
       <button :disabled="loading">{{ loading ? '...' : 'Create account' }}</button>
       <p v-if="error" style="color:red">{{ error }}</p>

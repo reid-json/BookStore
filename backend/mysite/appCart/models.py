@@ -1,16 +1,12 @@
 from django.db import models
-from appAccounts.models import UserModel
-from appBooks.models import BooksModel
+from django.contrib.auth.models import User
+import uuid
 
-
-# Create your models here.
 class CartModel(models.Model):
-    username = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='cart_username')
-    email = models.ForeignKey(UserModel, on_delete=models.CASCADE, related_name='cart_email', default= "")
-    isbn = models.ForeignKey(BooksModel, on_delete=models.CASCADE)
+    cart_id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user = models.OneToOneField(User, on_delete=models.CASCADE, related_name='cart')
+    created_date = models.DateTimeField(auto_now_add=True)
+    updated_date = models.DateTimeField(auto_now=True)
 
-    class Meta:
-        constraints = [
-            models.UniqueConstraint(fields=['username', 'email', 'isbn'],
-                                    name='unique_cart')
-        ]
+    def __str__(self):
+        return f"Cart for {self.user.username}"
