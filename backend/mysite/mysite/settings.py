@@ -43,15 +43,13 @@ INSTALLED_APPS = [
     'rest_framework',
     'corsheaders',
     "rest_framework_simplejwt",
+
     'appAccounts',
     'appBooks',
     'appCart',
     'appOrders',
     'appPages',
     'appSearch',
-
-
-
 ]
 
 MIDDLEWARE = [
@@ -107,6 +105,8 @@ DATABASES = {
 
 # Password validation
 # https://docs.djangoproject.com/en/5.2/ref/settings/#auth-password-validators
+
+AUTH_USER_MODEL = "appAccounts.UserModel"
 
 AUTH_PASSWORD_VALIDATORS = [
     {
