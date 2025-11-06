@@ -68,10 +68,11 @@ TEMPLATES = [
 WSGI_APPLICATION = 'mysite.wsgi.application'
 
 
-from AA_SingletonPattern_DatabaseConfig.dbconfig import *
+#calling an instance of singleton
+db_config = DBConfig().get_config()
 
 DATABASES = {
-    'default': DBConfig().get_config()
+    'default': db_config
 
 
 }
