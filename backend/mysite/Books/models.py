@@ -1,3 +1,4 @@
+<<<<<<<< HEAD:backend/mysite/Books/models.py
 #imports the models function from django
 from django.db import models
 
@@ -9,3 +10,5 @@ class BooksModel(models.Model):
     author = models.CharField(max_length=100)
     stock = models.IntegerField()
     published_date = models.DateField()
+========
+>>>>>>>> d5dc5d0 (nothing):backend/mysite/mysite/Books/Models/BooksModel.py
