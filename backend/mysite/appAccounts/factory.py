@@ -29,27 +29,7 @@ class AdminCreator:
 
 
 @dataclass(frozen=True)
-class StaffCreator:
-    """
-    Creates a staff (non-superuser) account.
-    """
-
-    def create(self, *, username: str, email: str, password: str, **extra: Any) -> User:
-        password_validation.validate_password(password)
-        with transaction.atomic():
-            user = User.objects.create_user(username=username, email=email, password=password)
-            user.is_staff = True
-            # Apply whitelisted extras to avoid mass assignment
-            for k, v in extra.items():
-                if hasattr(user, k):
-                    setattr(user, k, v)
-            user.full_clean(validate_unique=False)
-            user.save()
-            return user
-
-
-@dataclass(frozen=True)
-class CustomerCreator:
+class UserCreator:
     """
     Creates a normal customer account.
     """
@@ -102,5 +82,4 @@ class UserFactory:
 
 # Default roles
 UserFactory.register("admin", AdminCreator())
-UserFactory.register("staff", StaffCreator())
-UserFactory.register("customer", CustomerCreator())
+UserFactory.register("customer", UserCreator())

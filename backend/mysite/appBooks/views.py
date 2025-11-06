@@ -6,7 +6,6 @@ from rest_framework.permissions import IsAuthenticated  # 🔐 Require login
 from .models import BooksModel
 
 class BooksAPIView(APIView):
-    permission_classes = [IsAuthenticated]  # 🔐 Only logged-in users can access
 
     def get(self, request):
         books = BooksModel.objects.all()
