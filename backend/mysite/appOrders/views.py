@@ -3,11 +3,14 @@ from uuid import uuid4
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from rest_framework.permissions import IsAuthenticated
+from django.core.mail import send_mail
+from django.conf import settings
 from appCart.models import CartModel
 from appCartItem.models import CartItem
 from appOrders.models import OrdersModel
 from appOrders.serializers import OrdersModelSerializer
 from AA_StatePattern_Orders.OrderContext import get_order_state
+
 
 class PlaceOrderView(APIView):
     permission_classes = [IsAuthenticated]
@@ -32,10 +35,20 @@ class PlaceOrderView(APIView):
                     quantity=item.quantity
                 )
             items.delete()
+
+            # ✅ Send confirmation email
+            send_mail(
+                subject='Order Confirmation',
+                message=f'Thank you for your order #{order_uuid}. We’ll notify you when it ships.',
+                from_email=settings.DEFAULT_FROM_EMAIL,
+                recipient_list=[user.email],
+                fail_silently=False
+            )
+
             return Response({ "order_id": str(order_uuid) })
+
         except Exception as e:
             return Response({ "error": f"Order creation failed: {str(e)}" }, status=500)
-
 
 
 class ListOrdersView(APIView):

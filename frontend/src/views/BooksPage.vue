@@ -1,18 +1,24 @@
 <template>
   <div class="book-list">
     <h1>Book Catalog</h1>
-    <div v-if="loading">Loading books...</div>
-    <div v-else>
+    <div v-if="loading" class="loading">Loading books...</div>
+    <div v-else class="book-grid">
       <div v-for="book in books" :key="book.isbn" class="book-card">
         <img :src="book.coverImage" alt="Cover" class="cover" />
         <div class="info">
           <h2>{{ book.title }}</h2>
-          <p><strong>Author:</strong> {{ book.author || 'Unknown' }}</p>
-          <p><strong>Genre:</strong> {{ book.genre }}</p>
-          <p><strong>Price:</strong> ${{ book.price }}</p>
-          <p><strong>Stock:</strong> {{ book.stock }}</p>
-          <p><strong>Published:</strong> {{ book.published_date }}</p>
-          <button @click="addToCart(book.isbn)">Add to Cart</button>
+          <p class="meta"><span>Author:</span> {{ book.author || 'Unknown' }}</p>
+          <p class="meta"><span>Genre:</span> {{ book.genre }}</p>
+          <p class="meta"><span>Price:</span> ${{ book.price }}</p>
+          <p class="meta"><span>Stock:</span> {{ book.stock }}</p>
+          <p class="meta"><span>Published:</span> {{ book.published_date }}</p>
+          <button
+              :class="{ added: addedToCart.includes(book.isbn) }"
+              :disabled="book.stock === 0 || addedToCart.includes(book.isbn)"
+              @click="addToCart(book)"
+          >
+            {{ book.stock === 0 ? 'Out of Stock' : addedToCart.includes(book.isbn) ? 'Added!' : 'Add to Cart' }}
+          </button>
         </div>
       </div>
     </div>
@@ -26,6 +32,7 @@ export default {
     return {
       books: [],
       loading: true,
+      addedToCart: []
     };
   },
   mounted() {
@@ -41,7 +48,11 @@ export default {
         });
   },
   methods: {
-    async addToCart(isbn) {
+    async addToCart(book) {
+      if (book.stock === 0 || this.addedToCart.includes(book.isbn)) return;
+
+      this.addedToCart.push(book.isbn);
+
       const token = localStorage.getItem('authToken');
       try {
         const res = await fetch('http://localhost:8000/api/cartitem/cart/add/', {
@@ -50,45 +61,117 @@ export default {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${token}`
           },
-          body: JSON.stringify({ isbn, quantity: 1 })
+          body: JSON.stringify({ isbn: book.isbn, quantity: 1 })
         });
+
         const data = await res.json();
-        console.log(data.message || 'Added to cart');
+        if (!res.ok) throw new Error(data.error || 'Failed to add to cart');
+
+        book.stock -= 1; // ✅ Update stock visually
       } catch (err) {
         console.error('Error adding to cart:', err);
       }
+
+      setTimeout(() => {
+        this.addedToCart = this.addedToCart.filter(id => id !== book.isbn);
+      }, 1000);
     }
   }
 };
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
 .book-list {
   padding: 2rem;
-  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  min-height: 100vh;
+  font-family: 'Libre Baskerville', serif;
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.2rem;
+  color: #ffffff;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+.book-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 2rem;
 }
 
 .book-card {
-  display: flex;
-  gap: 1rem;
-  margin-bottom: 2rem;
-  border-bottom: 1px solid #ccc;
-  padding-bottom: 1rem;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  padding: 1rem;
+  transition: transform 0.2s ease;
+  text-align: center;
+}
+
+.book-card:hover {
+  transform: scale(1.03);
 }
 
 .cover {
-  width: 120px;
-  height: auto;
-  object-fit: cover;
-  border: 1px solid #ddd;
+  width: 100%;
+  height: 280px;
+  object-fit: contain;
+  background-color: #000;
+  margin-bottom: 1rem;
 }
 
 .info h2 {
-  margin: 0;
-  font-size: 1.5rem;
+  margin: 0 0 0.5rem;
+  font-size: 1.3rem;
+  color: #fff;
 }
 
-.info p {
-  margin: 0.3rem 0;
+.meta {
+  margin: 0.4rem 0;
+  font-size: 0.95rem;
+  color: #d0d0d0;
+}
+
+.meta span {
+  color: #a0e0a0;
+  font-weight: bold;
+}
+
+button {
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #388e3c;
+}
+
+button.added {
+  background-color: #81c784;
+  cursor: default;
+}
+
+button:disabled {
+  background-color: #555;
+  cursor: not-allowed;
 }
 </style>

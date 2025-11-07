@@ -1,26 +1,36 @@
 <template>
   <div class="cart">
     <h2>Your Cart</h2>
-    <div v-if="loading">Loading cart...</div>
-    <div v-else-if="items.length === 0">Your cart is empty.</div>
-    <div v-else>
-      <div v-for="item in items" :key="item.cart_item_id" class="cart-item">
-        <p>{{ item.isbn.title }} ({{ item.quantity }})</p>
-        <button @click="removeFromCart(item.isbn.isbn)">Remove</button>
+    <div v-if="loading" class="loading">Loading cart...</div>
+    <div v-else-if="items.length === 0" class="empty">Your cart is empty.</div>
+    <div v-else class="cart-layout">
+      <div class="cart-items">
+        <div class="cart-grid">
+          <div v-for="item in items" :key="item.cart_item_id" class="cart-item">
+            <p class="item-title">{{ item.isbn.title }}</p>
+            <div class="actions">
+              <span class="qty">Qty: {{ item.quantity }}</span>
+              <button @click="removeFromCart(item.isbn.isbn)">Remove</button>
+            </div>
+          </div>
+        </div>
       </div>
 
-      <div class="checkout-form">
-        <input v-model="name" placeholder="Name" />
-        <input v-model="address" placeholder="Address" />
-        <input v-model="card" placeholder="Card Number" />
-        <input v-model="cvv" placeholder="CVV" />
+      <div class="checkout-panel">
+        <h3 class="form-title">Enter Payment Information</h3>
+        <div class="checkout-form">
+          <input v-model="name" placeholder="Name" />
+          <input v-model="address" placeholder="Address" />
+          <input v-model="card" placeholder="Card Number" />
+          <input v-model="cvv" placeholder="CVV" />
+        </div>
+        <div class="order-btn-wrapper">
+          <button class="order-btn" @click="placeOrder">Order</button>
+        </div>
       </div>
-
-      <button class="order-btn" @click="placeOrder">Order</button>
     </div>
   </div>
 </template>
-
 <script>
 export default {
   name: 'Cart',
@@ -107,52 +117,139 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
 .cart {
   padding: 2rem;
-  font-family: Arial, sans-serif;
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: 'Libre Baskerville', serif;
+  min-height: 100vh;
+}
+
+h2 {
+  text-align: center;
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #ffffff;
+}
+
+.loading,
+.empty {
+  text-align: center;
+  font-size: 1.2rem;
+  color: #aaa;
+}
+
+.cart-layout {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 2rem;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.cart-items {
+  flex: 2;
+  min-width: 300px;
+}
+
+.cart-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.5rem;
 }
 
 .cart-item {
-  margin-bottom: 1rem;
+  background-color: #1e1e1e;
   padding: 1rem;
-  border-bottom: 1px solid #ccc;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+  text-align: center;
 }
 
-.checkout-form {
-  margin-top: 1rem;
+.item-title {
+  font-size: 1.1rem;
+  color: #fff;
+  margin-bottom: 0.5rem;
+}
+
+.actions {
   display: flex;
-  flex-direction: column;
-  gap: 0.5rem;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.checkout-form input {
-  padding: 0.5rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+.qty {
+  font-weight: bold;
+  color: #a0e0a0;
 }
 
 button {
-  margin-top: 0.5rem;
   padding: 0.4rem 1rem;
   background-color: #dc3545;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: inherit;
 }
+
 button:hover {
   background-color: #c82333;
 }
 
-.order-btn {
+/* Checkout Panel */
+.checkout-panel {
+  flex: 1;
+  min-width: 280px;
+  background-color: #1e1e1e;
+  padding: 1.5rem;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.4);
+}
+
+.form-title {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: center;
+  color: #a0e0a0;
+}
+
+.checkout-form {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.checkout-form input {
+  padding: 0.6rem;
+  border: 1px solid #444;
+  border-radius: 4px;
+  background-color: #121212;
+  color: #f0f0f0;
+  font-family: inherit;
+}
+
+.checkout-form input::placeholder {
+  color: #888;
+}
+
+.order-btn-wrapper {
   margin-top: 1.5rem;
+  text-align: center;
+}
+
+.order-btn {
   padding: 0.6rem 1.2rem;
   background-color: #28a745;
   color: white;
   border: none;
   border-radius: 4px;
   cursor: pointer;
+  font-family: inherit;
 }
+
 .order-btn:hover {
   background-color: #218838;
 }

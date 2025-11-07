@@ -1,6 +1,6 @@
 <template>
   <div class="login-container">
-    <h1>Login</h1>
+    <h1>Login to Shlves</h1>
     <form @submit.prevent="onSubmit">
       <label for="username">Username</label>
       <input id="username" v-model="username" required />
@@ -14,7 +14,7 @@
     </form>
 
     <div class="links">
-      <RouterLink to="/Register">Register</RouterLink>
+      <RouterLink to="/Register">Don't have an account? Register</RouterLink>
     </div>
   </div>
 </template>
@@ -69,18 +69,36 @@ async function onSubmit() {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
 .login-container {
-  max-width: 400px;
-  margin: 80px auto;
+  max-width: 420px;
+  margin: 100px auto;
   padding: 2rem;
-  border: 1px solid #ccc;
-  border-radius: 8px;
-  background: #f9f9f9;
+  background-color: #1e1e1e;
+  border-radius: 10px;
+  box-shadow: 0 0 20px rgba(160, 224, 160, 0.2);
+  font-family: 'Libre Baskerville', serif;
+  color: #f0f0f0;
+  animation: fadeIn 0.6s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 h1 {
   text-align: center;
+  font-size: 2rem;
   margin-bottom: 1.5rem;
+  color: #a0e0a0;
 }
 
 form {
@@ -91,40 +109,68 @@ form {
 label {
   margin-top: 1rem;
   font-weight: bold;
+  color: #ccc;
 }
 
 input {
-  padding: 0.5rem;
+  padding: 0.6rem;
   font-size: 1rem;
   margin-top: 0.25rem;
-  border: 1px solid #ccc;
-  border-radius: 4px;
+  border: 1px solid #444;
+  border-radius: 6px;
+  background-color: #121212;
+  color: #f0f0f0;
+  transition: border-color 0.3s ease;
+}
+
+input:focus {
+  outline: none;
+  border-color: #a0e0a0;
+  box-shadow: 0 0 5px rgba(160, 224, 160, 0.5);
 }
 
 button {
   margin-top: 1.5rem;
   padding: 0.75rem;
   font-size: 1rem;
-  background-color: #007bff;
+  background-color: #4caf50;
   color: white;
   border: none;
-  border-radius: 4px;
+  border-radius: 6px;
   cursor: pointer;
+  font-family: inherit;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #388e3c;
 }
 
 button:disabled {
-  background-color: #aaa;
+  background-color: #666;
   cursor: not-allowed;
 }
 
 .error {
-  color: red;
+  color: #ff6b6b;
   margin-top: 1rem;
   text-align: center;
+  font-size: 0.95rem;
 }
 
 .links {
-  margin-top: 1rem;
+  margin-top: 1.5rem;
   text-align: center;
+}
+
+.links a {
+  color: #a0e0a0;
+  text-decoration: none;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+.links a:hover {
+  color: #8cd88c;
 }
 </style>
