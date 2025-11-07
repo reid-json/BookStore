@@ -7,7 +7,7 @@ from appCart.models import CartModel
 from appCartItem.models import CartItem
 from appOrders.models import OrdersModel
 from appOrders.serializers import OrdersModelSerializer
-
+from AA_StatePattern_Orders.OrderContext import get_order_state
 
 class PlaceOrderView(APIView):
     permission_classes = [IsAuthenticated]
@@ -21,17 +21,22 @@ class PlaceOrderView(APIView):
             return Response({ "error": "Cart is empty" }, status=400)
 
         order_uuid = uuid4()
+        state = get_order_state('pending')  # Initial state
 
-        for item in items:
-            OrdersModel.objects.create(
-                order_id=order_uuid,
-                user=user,
-                isbn=item.isbn,
-                quantity=item.quantity
-            )
+        try:
+            for item in items:
+                state.create(
+                    user=user,
+                    order_id=order_uuid,
+                    isbn=item.isbn,
+                    quantity=item.quantity
+                )
+            items.delete()
+            return Response({ "order_id": str(order_uuid) })
+        except Exception as e:
+            return Response({ "error": f"Order creation failed: {str(e)}" }, status=500)
 
-        items.delete()
-        return Response({ "order_id": str(order_uuid) })
+
 
 class ListOrdersView(APIView):
     permission_classes = [IsAuthenticated]

@@ -15,6 +15,7 @@
       <button @click="submitPayment">Pay Now</button>
     </div>
 
+    <div v-if="success" class="success">{{ success }}</div>
     <div v-if="error" class="error">{{ error }}</div>
   </div>
 </template>
@@ -27,32 +28,45 @@ export default {
       method: '',
       card: '',
       error: '',
+      success: '',
       order_id: this.$route.query.order_id,
       amount: this.$route.query.amount
     };
   },
   methods: {
     async submitPayment() {
+      this.error = '';
+      this.success = '';
       const token = localStorage.getItem('authToken');
-      const res = await fetch('http://localhost:8000/api/payment/process/', {
-        method: 'POST',
-        headers: {
-          'Authorization': `Bearer ${token}`,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          order: this.order_id,
-          amount: this.amount,
-          method: this.method,
-          card: this.card
-        })
-      });
 
-      const data = await res.json();
-      if (res.ok) {
-        this.$router.push({ name: 'Confirmation', query: { payment_id: data.payment_id } });
-      } else {
-        this.error = data.error || 'Payment failed';
+      try {
+        const res = await fetch('http://localhost:8000/api/payment/process/', {
+          method: 'POST',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            order: this.order_id,
+            amount: this.amount,
+            method: this.method,
+            card: this.card
+          })
+        });
+
+        const data = await res.json();
+
+        if (res.ok) {
+          this.success = "Payment successful! Redirecting to your orders...";
+          setTimeout(() => {
+            this.$router.push({ name: 'Orders' }); // ✅ Make sure 'Orders' route is defined
+          }, 1500);
+        } else {
+          this.error = data.error || 'Payment failed';
+        }
+      } catch (err) {
+        this.error = 'Network error. Please try again.';
+        console.error(err);
       }
     }
   }
@@ -95,5 +109,10 @@ button:hover {
 .error {
   margin-top: 1rem;
   color: red;
+}
+
+.success {
+  margin-top: 1rem;
+  color: green;
 }
 </style>
