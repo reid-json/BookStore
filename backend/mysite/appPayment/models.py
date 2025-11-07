@@ -8,9 +8,8 @@ class Payment(models.Model):
 
     method = models.CharField(max_length=20, choices=[
         ('credit_card', 'Credit Card'),
+        ('debit_card', 'Debit Card'),
         ('paypal', 'PayPal'),
-        ('bank_transfer', 'Bank Transfer'),
-        ('cash', 'Cash'),
     ])
 
     status = models.CharField(max_length=20, choices=[

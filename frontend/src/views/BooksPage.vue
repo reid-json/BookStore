@@ -12,6 +12,7 @@
           <p><strong>Price:</strong> ${{ book.price }}</p>
           <p><strong>Stock:</strong> {{ book.stock }}</p>
           <p><strong>Published:</strong> {{ book.published_date }}</p>
+          <button @click="addToCart(book.isbn)">Add to Cart</button>
         </div>
       </div>
     </div>
@@ -39,6 +40,25 @@ export default {
           this.loading = false;
         });
   },
+  methods: {
+    async addToCart(isbn) {
+      const token = localStorage.getItem('authToken');
+      try {
+        const res = await fetch('http://localhost:8000/api/cartitem/cart/add/', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+          },
+          body: JSON.stringify({ isbn, quantity: 1 })
+        });
+        const data = await res.json();
+        console.log(data.message || 'Added to cart');
+      } catch (err) {
+        console.error('Error adding to cart:', err);
+      }
+    }
+  }
 };
 </script>
 

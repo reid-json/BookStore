@@ -6,6 +6,8 @@
     <div class="nav-right">
       <router-link to="/">Home</router-link>
       <router-link to="/Books">Books</router-link>
+      <router-link to="/cart">Cart</router-link>
+      <router-link to="/orders">My Orders</router-link>
       <button @click="logout" class="logout-button">Logout</button>
     </div>
   </nav>
