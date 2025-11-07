@@ -69,6 +69,11 @@ async function onSubmit() {
 </script>
 
 <style scoped>
+:root{
+  text-decoration-color: #181818;
+
+}
+
 .login-container {
   max-width: 400px;
   margin: 80px auto;
