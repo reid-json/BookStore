@@ -20,7 +20,7 @@ function goToCatalog() {
 
     <section class="highlight">
       <div class="text">
-        <h2>Featured: The Divine Comedy</h2>
+        <h1>Featured: The Divine Comedy</h1>
         <p>~ "Turn and listen, for not only in my eyes is Paradise."</p>
       </div>
       <div class="visual">
@@ -31,9 +31,10 @@ function goToCatalog() {
     <section class="grid-section">
       <div class="grid-block">
         <h2>Staff Picks</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nunc, vitae tincidunt justo nulla nec eros.
-        </p>
+          <ul>
+            <li>Berserk Vol. 1</li>
+            <li>Jujutsu Kaisen</li>
+          </ul>
       </div>
       <div class="grid-block">
         <h2>New Arrivals</h2>
@@ -68,16 +69,15 @@ function goToCatalog() {
 </template>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap" rel="stylesheet');
 
 .home {
-  background-color: #121212;
+  background-color: #424242;
   color: #f0f0f0;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Quicksand', serif;
   padding: 2rem;
   min-height: 100vh;
 }
-
 
 .hero {
   text-align: center;
@@ -135,7 +135,7 @@ function goToCatalog() {
 
 .hero-image {
   width: 100%;
-  max-width: 300px;
+  max-width: 280px;
   height: auto;
   object-fit: contain;
   border-radius: 6px;

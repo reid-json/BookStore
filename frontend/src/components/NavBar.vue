@@ -42,7 +42,7 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 .navbar {
   position: fixed;
@@ -57,7 +57,7 @@ export default {
   align-items: center;
   padding: 0.75rem 2rem;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Quicksand', serif;
   z-index: 1000;
 }
 

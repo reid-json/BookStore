@@ -23,9 +23,11 @@ export default {
 </script>
 
 <style scoped>
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
+
 .confirmation {
   padding: 2rem;
-  font-family: Arial, sans-serif;
+  font-family: 'Quicksand', sans-serif;
   text-align: center;
 }
 

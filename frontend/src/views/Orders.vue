@@ -44,13 +44,13 @@ export default {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 .orders {
   padding: 2rem;
-  background-color: #121212;
+  background-color: #424242;
   color: #f0f0f0;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Quicksand', serif;
   min-height: 100vh;
 }
 

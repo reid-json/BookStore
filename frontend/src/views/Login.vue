@@ -69,16 +69,16 @@ async function onSubmit() {
 </script>
 
 <style scoped>
-@import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300..700&display=swap');
 
 .login-container {
   max-width: 420px;
   margin: 100px auto;
   padding: 2rem;
-  background-color: #1e1e1e;
+  background-color: #424242;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(160, 224, 160, 0.2);
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Quicksand', serif;
   color: #f0f0f0;
   animation: fadeIn 0.6s ease-out;
 }
@@ -108,8 +108,7 @@ form {
 
 label {
   margin-top: 1rem;
-  font-weight: bold;
-  color: #ccc;
+  color: #a0e0a0;
 }
 
 input {
@@ -118,8 +117,8 @@ input {
   margin-top: 0.25rem;
   border: 1px solid #444;
   border-radius: 6px;
-  background-color: #121212;
-  color: #f0f0f0;
+  background-color: #ffffff;
+  color: #121212;
   transition: border-color 0.3s ease;
 }
 

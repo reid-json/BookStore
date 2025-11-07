@@ -85,10 +85,10 @@ export default {
 
 .book-list {
   padding: 2rem;
-  background-color: #121212;
+  background-color: #424242;
   color: #f0f0f0;
   min-height: 100vh;
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Quicksand', serif;
 }
 
 h1 {

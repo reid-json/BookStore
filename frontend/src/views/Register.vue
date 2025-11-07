@@ -78,10 +78,10 @@ function goToLogin() {
   max-width: 420px;
   margin: 100px auto;
   padding: 2rem;
-  background-color: #1e1e1e;
+  background-color: #424242;
   border-radius: 10px;
   box-shadow: 0 0 20px rgba(160, 224, 160, 0.2);
-  font-family: 'Libre Baskerville', serif;
+  font-family: 'Quicksand', serif;
   color: #f0f0f0;
   animation: fadeIn 0.6s ease-out;
 }
