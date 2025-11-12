@@ -9,7 +9,9 @@
 \usepackage{tikz-cd}
 \usepackage{tikz-qtree}
 \usepackage{graphicx}
+\usepackage{placeins}
 \usetikzlibrary{shapes.geometric, positioning}
+
 \usepackage[letterpaper, margin=1.25in]{geometry}
 
 \title{Book Store Requirements, Architecture, and Patterns}
@@ -41,7 +43,11 @@
 	\lipsum[1]
 	
 	\section*{Patterns:}
-	\lipsum[1]
+	Factory \\
+	Strategy \\
+	Singleton \\
+	Observer \\
+	State \\
 	
 	\section*{Entity Relationship Diagram:}
 	\begin{figure}[h]
@@ -50,12 +56,21 @@
 		\caption{Entity Relationship Diagram}
 		\label{fig:ERD}
 	\end{figure}
+	\FloatBarrier
 	
 	\section*{ERD and Database Explained:}
-	\lipsum[1]
+	User -owns→ Cart -contains→ CartItem -adds→ Books \\
+	Cart -converts→ Order -complete→ Payment \\
+	User -places→ Order \\
 	
 	\section*{Unified Modeling Language (UMLs):}
-	\lipsum[1]
+	\begin{figure}[h]
+		\centering
+		\includegraphics[width=1\textwidth]{SingletonUML.png}
+		\caption{Singleton UML Diagram}
+		\label{fig:Singleton}
+	\end{figure}
+	\FloatBarrier
 	
 	\section*{UMLs Explained:}
 	\lipsum[1]

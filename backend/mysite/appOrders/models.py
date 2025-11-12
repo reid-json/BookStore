@@ -16,5 +16,7 @@ class OrdersModel(models.Model):
         ('cancelled', 'Cancelled'),
     ], default='pending')
 
+    finalized = models.BooleanField(default=False)
+
     def __str__(self):
         return f"Order {self.order_id} by {self.user.username}"

@@ -1,4 +1,6 @@
-class DBConfig:
+from AA_SingletonPattern_DatabaseConfig.dbconfig_interface import InterfaceConfig
+
+class DBConfig(InterfaceConfig):
     _instance = None
 
     def __new__(cls):
@@ -15,7 +17,7 @@ class DBConfig:
             'PASSWORD': "rootmaster",
             'HOST': "bookstoredb.c5qaa0406cvn.us-east-2.rds.amazonaws.com",
             'PORT': "3306",
-            'OPTIONS':{
+            'OPTIONS': {
                 'init_command': "SET sql_mode='STRICT_TRANS_TABLES'"
             }
         }
