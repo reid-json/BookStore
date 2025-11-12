@@ -1,7 +1,9 @@
-from abc import ABC, abstractmethod
-from django.contrib.auth.models import User
+from typing import Protocol, Any, TypeVar
+from django.contrib.auth import get_user_model
 
-class AbstractUserFactory(ABC):
-    @abstractmethod
-    def create_user(self, username, email, password, **extra_fields):
-        pass
+User = get_user_model()
+TUser = TypeVar("TUser")
+
+class AbstractUserFactory(Protocol):
+    def create_user(self, *, username: str, email: str, password: str, **extra: Any) -> TUser:
+        ...

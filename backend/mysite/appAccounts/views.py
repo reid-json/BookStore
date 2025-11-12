@@ -3,10 +3,10 @@ from rest_framework.response import Response
 from rest_framework import status
 from rest_framework.permissions import AllowAny, IsAuthenticated
 from rest_framework.serializers import ModelSerializer
-from AA_FactoryPattern_UserCreation.FactoryMulti import get_user_factory
+from django.contrib.auth import get_user_model
+from AA_FactoryPattern_UserCreation.FactoryMulti import FactoryMulti
 
-
-from django.contrib.auth.models import User
+User = get_user_model()
 
 class RegisterSerializer(ModelSerializer):
     class Meta:
@@ -14,22 +14,23 @@ class RegisterSerializer(ModelSerializer):
         fields = ['username', 'password', 'email']
         extra_kwargs = {'password': {'write_only': True}}
 
-
 class RegisterView(APIView):
     permission_classes = [AllowAny]
 
     def post(self, request):
         serializer = RegisterSerializer(data=request.data)
         if serializer.is_valid():
-            factory = get_user_factory(user_type='default')  # ✅ Selects the concrete factory
-            factory.create_user(
-                username=serializer.validated_data['username'],
-                email=serializer.validated_data.get('email', ''),
-                password=serializer.validated_data['password']
-            )
-            return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+            try:
+                FactoryMulti.create_user(
+                    role='customer',  # You can make this dynamic if needed
+                    username=serializer.validated_data['username'],
+                    email=serializer.validated_data.get('email', ''),
+                    password=serializer.validated_data['password']
+                )
+                return Response({'message': 'User registered successfully'}, status=status.HTTP_201_CREATED)
+            except ValueError as e:
+                return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
-
 
 class MeView(APIView):
     permission_classes = [IsAuthenticated]

@@ -30,37 +30,57 @@ function goToCatalog() {
 
     <section class="grid-section">
       <div class="grid-block">
-        <h2>Staff Picks</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed euismod, urna eu tincidunt consectetur, nisi nisl aliquet nunc, vitae tincidunt justo nulla nec eros.
-        </p>
+        <h2>Shlves Best Sellers</h2>
+        <ul class="book-listing">
+          <li><span class="book-title">Berserk Volume 1</span></li>
+          <li><span class="book-title">The Mamba Mentality</span></li>
+          <li><span class="book-title">Dune</span></li>
+        </ul>
+        <div class="catalog-button">
+          <button @click="$router.push('/books')">View Catalog</button>
+        </div>
       </div>
+
       <div class="grid-block">
-        <h2>New Arrivals</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio. Praesent libero. Sed cursus ante dapibus diam.
-        </p>
+        <h2>New Philosophy Arrivals</h2>
+        <ul class="book-listing">
+          <li><span class="book-title">Brave New World</span></li>
+          <li><span class="book-title">Crime and Punishment</span></li>
+        </ul>
+        <div class="catalog-button">
+          <button @click="$router.push('/books')">View Catalog</button>
+        </div>
       </div>
     </section>
 
     <section class="about">
       <h2>About Us</h2>
       <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus lacinia odio vitae vestibulum vestibulum. Cras venenatis euismod malesuada.
+        We are an inspired group of individuals here at Shlves ready to bring our reader into their next journey.
+        Check out our full catalog that is always updating!! Happy shopping!
       </p>
     </section>
 
     <section class="extras">
       <div class="extra-block">
-        <h2>Upcoming Events</h2>
-        <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Join us for author talks, book signings, and community reads happening every month.
-        </p>
+        <h2>Coming Soon to Shlves </h2>
+        <ul>
+          <li>New Book Titles</li>
+          <li>Mobile Support</li>
+          <li>Text Updates</li>
+        </ul>
+
       </div>
       <div class="extra-block">
-        <h2>Reader Reviews</h2>
+        <h2>Book Quotes</h2>
         <p>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit. Hear what fellow readers are saying about their latest finds and share your own thoughts.
+          <em>"Pain and suffering are always inevitable for a large intelligence and a deep heart.
+          The really greate men must, I think, have great sadness on earth."</em> ~ Fyodor Dostoevsky
+        </p>
+        <p>
+         <em>"From his slack hand the garland wreathed for Eve down dropped, and all the
+          faded roses shed; Speechless he stood and pale, till thus at length. First to himself
+          he inward silence broke."</em> ~ John Milton
         </p>
       </div>
     </section>
@@ -69,6 +89,46 @@ function goToCatalog() {
 
 <style scoped>
 @import url('https://fonts.googleapis.com/css2?family=Libre+Baskerville&display=swap');
+
+.book-listing {
+  list-style: none;
+  padding: 0;
+  margin: 1rem 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.book-listing li {
+  background-color: #2a2a2a;
+  padding: 0.6rem 1rem;
+  border-radius: 6px;
+}
+
+.book-title {
+  font-size: 1rem;
+  color: #f0f0f0;
+}
+
+.catalog-button {
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.catalog-button button {
+  padding: 0.5rem 1rem;
+  background-color: #4caf50;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-family: inherit;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.catalog-button button:hover {
+  background-color: #388e3c;
+}
 
 .home {
   background-color: #121212;

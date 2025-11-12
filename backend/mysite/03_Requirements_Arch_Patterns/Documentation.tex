@@ -28,26 +28,20 @@
 	
 	% Body
 	\section*{Project Scope:}
-	User will be able to browse books \\
-	User will be able to register and login \\
-	Shopping cart management \\
-	Place orders and simulate payment \\
-	Admin can add/update books
+	User will be able to browse a books catalog. \\
+	User will be able to register and login. \\
+	User will be able to manage an individual cart before placing an order. \\
+	User will be able to simulate payment and ordering. \\
+	Admin will be able to  add/update books. \\
+	Stretch: User will be notified when order is placed. \\
 	
-	\section*{Requirements:}
-	Backend: Python + Django \\
-	DataBase: MySql + AWS RDS \\
-	Frontend: Vue \\
 	
-	\section*{Architecture:}
-	\lipsum[1]
+	\section*{Architecture + Requirements: Three-Tiered}
+	Frontend: Vue, JS, HTML/CSS, Node \\
+	Backend: Django, Python \\
+	Database: MySQL, AWS RDS \\
 	
-	\section*{Patterns:}
-	Factory \\
-	Strategy \\
-	Singleton \\
-	Observer \\
-	State \\
+	\newpage
 	
 	\section*{Entity Relationship Diagram:}
 	\begin{figure}[h]
@@ -63,6 +57,15 @@
 	Cart -converts→ Order -complete→ Payment \\
 	User -places→ Order \\
 	
+	\section*{Patterns Definitions:}
+	Singleton: Ensures a class has only one instance, and provides a global point of access to it.\\
+	Strategy: Defines a family of algorithms, encapsulates each one, and makes them interchangeable. \\
+	Factory: Defines an interface for creating an object, but lets sub-classes decide which class to instantiate. Factory method lets a class defer instantiation to sub-classes. \\
+	Observer: Defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically. \\
+	State: Allow an object to alter behavior when its internal state changes. It will appear to change its class.\\
+	
+	\newpage
+	
 	\section*{Unified Modeling Language (UMLs):}
 	\begin{figure}[h]
 		\centering
@@ -73,13 +76,27 @@
 	\FloatBarrier
 	
 	\section*{UMLs Explained:}
-	\lipsum[1]
+	Singleton: \\
+	Strategy: \\
+	Factory: \\
+	Observer: \\
+	State: \\
 	
-	\section*{Challenges:}
-	\lipsum[1]
+	\newpage
+	
+	\section*{Challenges: }
+	Research: \\
+	Database: \\
+	Backend: \\
+	Frontend: \\
 	
 	\section*{Future Implementations:}
-	\lipsum[1]
+	Updated Catalog: \\
+	Text Updates: \\
+	Payment System Actualized: \\
+	
+	\section*{Research:}
+	
 	
 	
 \end{document}
