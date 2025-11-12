@@ -1,0 +1,59 @@
+BACKEND: My Understanding Of Python/Django Setup
+
+MODEL:
+You create a model which is like creating a table and then you are able to write some sort of pseudo SQL equivalent in python. when you are making changes to the models you have to python manage.py migrate to update the database. this is the only time i think that the migrate has to happen.
+
+SERIALIZER:
+Then you make serializers for the models which translates the python objects to JSON so that the frontend can read the information being sent to it and parse the information out of it.
+
+VIEW:
+The view is kinda like the engine that controls the model requests from the frontend so that the backend knows how to manage the requests.
+
+
+URL:
+The serializer that coverts the python to JSON doesn't actually go anywhere so now you need a URL path in order to expose the ability to GET/POST/DELETE from the frontend 
+
+
+FRONTEND: My Understanding of Vue.js And How It Can Communicate With The Backend
+
+
+COMPONENT:
+This is what will actually display and be interactive to the user
+
+SERVICE:
+This is where the API calls can be logically setup so you can use this logic within the component layer
+
+
+Summary: Full Idea
+
+So the full scaffolding should be from making models in model.py, then making serializer logic for the models to create a JSON that is getting ready for frontend requests, then you make logic within the view in order to create the get/post/delete logic this is like the "engine" logic, then creating URL paths in url.py to expose the "engines" in views to the frontend. from there the frontend will have a service layer that handles the API logic requests and parse the data and centralizes the backend connection in a sense. finally there will be a component layer that actually presents the data or handles new data blah blah blah.
+
+
+What Exactly Are All These Extra Files In The MySite Folder?
+
+__init__.py: marks the folder as python packages
+ - this is what allows you to stuff like from books.models import Book. without it, it wont treat the book dir as a valid importable package.
+
+asgi.py: handles websockets or async requests <- not really needed, just gets added when the server is created. more for larger projects.
+
+settings.py: configures everything about the app. stuff like the db config, app configs, host configs, cors config(having a separate frontend).
+
+urls.py: the apps like (books) will have urls.py that routes the views for that app and then the main urls.py in the main folder will route the urls for the apps.
+
+wsgi.py: standard http requests <- config stuff for http, dont have to mess with it
+
+manage.py: starts the server and can also do migrations. initialize the server with python manage.py runserver or python manage.py migrate to update the database.
+
+backend.iml: this is the project metadata
+
+
+
+
+
+
+
+
+
+
+
+

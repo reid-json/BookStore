@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.4)  10 NOV 2025 03:52
+This is pdfTeX, Version 3.141592653-2.6-1.40.25 (MiKTeX 24.1) (preloaded format=pdflatex 2025.11.4)  11 NOV 2025 22:03
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -775,32 +775,46 @@ File: SingletonUML.png Graphic file (type png)
 <use SingletonUML.png>
 Package pdftex.def Info: SingletonUML.png  used on input line 72.
 (pdftex.def)             Requested size: 433.62001pt x 270.30528pt.
+<FactoryUML.png, id=20, 568.1225pt x 361.35pt>
+File: FactoryUML.png Graphic file (type png)
+<use FactoryUML.png>
+Package pdftex.def Info: FactoryUML.png  used on input line 79.
+(pdftex.def)             Requested size: 433.62001pt x 275.80879pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--84
 
- []
+LaTeX Warning: `h' float specifier changed to `ht'.
 
 [3 <./SingletonUML.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 88--92
+Underfull \hbox (badness 10000) in paragraph at lines 85--87
+
+ []
+
+[4 <./FactoryUML.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 92--96
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 94--97
+Underfull \hbox (badness 10000) in paragraph at lines 98--102
 
  []
 
-[4] (Documentation.aux)
+
+Underfull \hbox (badness 10000) in paragraph at lines 104--112
+
+ []
+
+[5] (Documentation.aux)
  ***********
 LaTeX2e <2023-11-01> patch level 1
 L3 programming layer <2024-01-04>
  ***********
  ) 
 Here is how much of TeX's memory you used:
- 17051 strings out of 474486
- 359288 string characters out of 5743755
- 1928542 words of memory out of 5000000
- 39011 multiletter control sequences out of 15000+600000
+ 17059 strings out of 474486
+ 359447 string characters out of 5743755
+ 1931542 words of memory out of 5000000
+ 39019 multiletter control sequences out of 15000+600000
  563953 words of font info for 58 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  102i,6n,107p,416b,242s stack positions out of 10000i,1000n,20000p,200000b,200000s
@@ -810,9 +824,9 @@ ts/cm/cmbx12.pfb><C:/Users/jason/AppData/Local/Programs/MiKTeX/fonts/type1/publ
 ic/amsfonts/cm/cmr10.pfb><C:/Users/jason/AppData/Local/Programs/MiKTeX/fonts/ty
 pe1/public/amsfonts/cm/cmr12.pfb><C:/Users/jason/AppData/Local/Programs/MiKTeX/
 fonts/type1/public/amsfonts/cm/cmr17.pfb>
-Output written on Documentation.pdf (4 pages, 527662 bytes).
+Output written on Documentation.pdf (5 pages, 544855 bytes).
 PDF statistics:
- 48 PDF objects out of 1000 (max. 8388607)
+ 53 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 23 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 28 words of extra memory for PDF output out of 10000 (max. 10000000)
 

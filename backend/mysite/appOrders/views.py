@@ -24,7 +24,7 @@ class PlaceOrderView(APIView):
             return Response({ "error": "Cart is empty" }, status=400)
 
         order_uuid = uuid4()
-        state = get_order_state('pending')  # Initial state
+        state = get_order_state('pending')
 
         try:
             for item in items:
@@ -36,7 +36,6 @@ class PlaceOrderView(APIView):
                 )
             items.delete()
 
-            # ✅ Send confirmation email
             send_mail(
                 subject='Order Confirmation',
                 message=f'Thank you for your order #{order_uuid}. We’ll notify you when it ships.',
@@ -70,3 +69,4 @@ class ListOrdersView(APIView):
 
         return Response(response)
 
+#future can have a view for update order status to use the other class we made but lowk didn't do that
